@@ -1,16 +1,31 @@
 <script setup lang="ts">
 import * as icons from "lucide-vue-next";
-import { Pages } from "~/utils/constants/pages";
+import { cn } from "@/lib/utils";
 
-const { name, link } = defineProps<{
-  name: string;
-  link: string;
-}>();
+const props = withDefaults(
+  defineProps<{
+    name?: string;
+    link: string;
+  }>(),
+  {}
+);
 
 const route = useRoute();
-const isActivePage = computed(() => route.path === link);
+const isActivePage = computed(() => route.path === props.link);
 
-const icon = computed(() => icons[name]);
+const icon = computed(() => {
+  if (props.name) {
+    return icons[props.name as keyof typeof icons];
+  }
+  return "Video";
+});
+
+const iconClass = computed(() =>
+  cn(
+    "transition-colors",
+    isActivePage.value ? "text-white" : "group-hover:text-white"
+  )
+);
 </script>
 
 <template>
@@ -21,53 +36,9 @@ const icon = computed(() => icons[name]);
       isActivePage ? 'bg-midnight' : 'bg-gray-100 hover:bg-midnight',
     ]"
   >
-    <svg
-      v-if="link === Pages.Bot.link"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      :class="[
-        'transition-colors',
-        isActivePage ? 'text-white' : 'group-hover:text-white',
-      ]"
-    >
-      <path d="M12 8V4H8" />
-      <rect width="16" height="12" x="4" y="8" rx="2" />
-      <path d="M2 14h2" />
-      <path d="M20 14h2" />
-      <path d="M15 13v2" class="robot-blink" />
-      <path d="M9 13v2" class="robot-blink" />
-    </svg>
-    <component
-      v-else
-      :is="icon"
-      :class="[
-        'transition-colors',
-        isActivePage ? 'text-white' : 'group-hover:text-white',
-      ]"
-    />
+    <!-- Custom SVG slot takes priority - classes are passed via scoped slot -->
+    <slot :iconClass="iconClass" v-if="name === undefined" />
+    <component v-else :is="icon" />
   </NuxtLink>
 </template>
 
-<style scoped>
-@keyframes blink {
-  0%,
-  90%,
-  100% {
-    opacity: 1;
-  }
-  95% {
-    opacity: 0.3;
-  }
-}
-
-.robot-blink {
-  animation: blink 4s infinite;
-}
-</style>

@@ -4,10 +4,15 @@ export const Pages = {
     link: "/",
     icon: "Bot",
   },
-  Swords: {
-    name: "Swords",
-    link: "/swords",
-    icon: "Swords",
+  Rounds: {
+    name: "Rounds",
+    link: "/rounds",
+    icon: "UsersRound",
+  },
+  Video: {
+    name: "Video",
+    link: "/video",
+    icon: "Video",
   },
   Settings: {
     name: "Settings",

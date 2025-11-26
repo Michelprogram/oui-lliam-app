@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import Element from "~/components/own/layouts/default/Element.vue";
-import Theme from "~/components/own/layouts/default/Theme.vue";
+import { Bot, Rounds, Theme, Video, Settings } from "./Sections";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Pages } from "~/utils/constants/pages";
 </script>
 
 <template>
@@ -19,14 +17,14 @@ import { Pages } from "~/utils/constants/pages";
 
         <!-- Sidebar content -->
         <div class="flex flex-col gap-3 p-4">
-          <Element name="Bot" :link="Pages.Bot.link" />
-          <Element name="UsersRound" :link="Pages.Swords.link" />
-          <Element name="Logs" :link="Pages.Swords.link" />
+          <Bot />
+          <Rounds />
+          <Video />
         </div>
 
         <!-- Sidebar footer -->
         <div class="flex flex-col gap-3 p-4">
-          <Element name="Settings" :link="Pages.Settings.link" />
+          <Settings />
           <Theme />
         </div>
       </div>
@@ -34,12 +32,6 @@ import { Pages } from "~/utils/constants/pages";
 
     <!-- Main content area with grid (top and bottom) -->
     <main class="grid grid-rows-[auto_1fr] h-full overflow-hidden">
-      <!-- Top content -->
-      <div class="overflow-y-auto">
-        <slot name="top" />
-      </div>
-
-      <!-- Bottom content -->
       <div class="overflow-y-auto">
         <slot />
       </div>
