@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import * as icons from "lucide-vue-next";
+
 import { Pages } from "~/utils/constants/pages";
 
 const { name, link } = defineProps<{

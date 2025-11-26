@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Element from "~/components/own/layouts/default/Element.vue";
 import Theme from "~/components/own/layouts/default/Theme.vue";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Pages } from "~/utils/constants/pages";
 </script>
 

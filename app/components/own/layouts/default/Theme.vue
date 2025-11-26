@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Moon, Sun } from "lucide-vue-next";
 import { useColorMode } from "@vueuse/core";
+import { Moon, Sun } from "lucide-vue-next";
 
 const colorMode = useColorMode({
   attribute: "class",

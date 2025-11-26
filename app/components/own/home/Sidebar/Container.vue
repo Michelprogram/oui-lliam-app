@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { Button } from "@/components/ui/button";
 import { Sparkles, Star } from "lucide-vue-next";
+
+import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import Saved from "./Saved.vue";
+import { Separator } from "~/components/ui/separator";
+
 import Chat from "./Chat.vue";
 import Dialog from "./Dialog.vue";
-import { Separator } from "~/components/ui/separator";
+import Saved from "./Saved.vue";
 
 const { chats } = defineProps<{
   saves: { name: string }[];
