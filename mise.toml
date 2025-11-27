@@ -13,21 +13,17 @@ run = "pnpm run dev"
 description = "Run the typechecker"
 run = "pnpm dlx nuxt typecheck"
 
-[tasks.linter]
-description = "Run the linter"
+[tasks.lint]
+description = "Run the lint"
 run = "pnpm exec eslint --ext .js,.ts,.vue . --fix"
 
 [tasks.act_validate]
 description = "Run the github action validate locally"
-run = ""
-
-[tasks.act_deploy]
-description = "Run the github action deploy locally"
-run = ""
+run = "act -W .github/workflows/validate.yml"
 
 [tasks.act_preview]
 description = "Run the github action preview locally"
-run = ""
+run = "act --secret-file .act.env -W .github/workflows/preview.yml"
 
 [tasks.act_clear_preview]
 description = "Run the github action clear_preview locally"
