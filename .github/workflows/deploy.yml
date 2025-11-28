@@ -20,16 +20,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Repository to lowercase
-        run: |
-          echo "repository=${GITHUB_REPOSITORY@L}" >> $GITHUB_OUTPUT
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@v6.5.0
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ steps.lower-repo.outputs.repository }}:latest
+          tags: ghcr.io/michelprogram/oui-lliam-app:latest
       - name: Deploy the app
         uses: digitalocean/app_action/deploy@v2
         env:
