@@ -2,17 +2,18 @@
 import { Settings } from "lucide-vue-next";
 import { Sparkles } from "lucide-vue-next";
 
+import Dialog from "@/components/own/home/Header/Dialog.vue";
 import { Button } from "@/components/ui/button";
 </script>
 <template>
-  <div class="flex">
+  <div class="flex items-center">
     <div class="flex items-center">
-      <p>Oui-lliam</p>
+      <p class="text-3xl">Oui-lliam</p>
       <div class="ml-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="15"
-          height="15"
+          width="25"
+          height="25"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -34,8 +35,9 @@ import { Button } from "@/components/ui/button";
         Configuration
         <Settings />
       </Button>
-      <Button size="sm" class="bg-midnight cursor-pointer">
-        + New Chat
+      <Dialog />
+      <Button size="sm" class="cursor-pointer  bg-primary-100 hover:bg-primary-200 dark:text-white transition-colors">
+        New Chat
         <Sparkles />
       </Button>
     </div>

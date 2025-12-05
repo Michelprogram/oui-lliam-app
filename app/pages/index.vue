@@ -112,15 +112,8 @@ const chats = ref([
 ]);
 </script>
 <template>
-  <div class="grid grid-cols-[auto_1fr] h-screen min-h-0 overflow-hidden">
-    <!-- Sidebar -->
-
-    <Sidebar :saves="saves" :chats="chats" />
-
-    <!-- Main Content -->
-    <main class="bg-white h-full min-h-0 p-8 flex flex-col">
+  <main class="grid grid-rows-[0.1fr_1fr] h-screen min-h-0 bg-white dark:bg-dark-secondary p-6 overflow-hidden">
       <Header />
       <ChatBox />
-    </main>
-  </div>
+  </main>
 </template>

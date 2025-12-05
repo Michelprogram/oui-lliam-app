@@ -2,10 +2,31 @@
 @import "tw-animate-css";
 
 @theme {
-  --color-midnight: rgb(5, 9, 37);
-  --color-midnight-light: rgb(250, 250, 250);
-  --color-midnight-dark: #121212;
-  --color-midnight-dark-secondary: #b0f48a;
+  --color-primary: #27e201;
+  --color-primary-100: #2ac60e;
+  --color-primary-200: #2aab14;
+  --color-primary-300: #299117;
+  --color-primary-400: #277718;
+  --color-primary-500: #235f17;
+
+  --color-secondary: #ffffff;
+  --color-secondary-100: #f0f0f0;
+  --color-secondary-200: #e1e1e1;
+  --color-secondary-300: #d3d3d3;
+  --color-secondary-400: #c5c5c5;
+  --color-secondary-500: #b6b6b6;
+
+  --color-dark-primary: #3ac80b;
+  --color-dark-primary-200: #5bcf39;
+  --color-dark-primary-300: #75d556;
+  --color-dark-primary-400: #8cdc6f;
+  --color-dark-primary-500: #a1e288;
+
+  --color-dark-secondary: #121212;
+  --color-dark-secondary-200: #282828;
+  --color-dark-secondary-300: #3f3f3f;
+  --color-dark-secondary-400: #575757;
+  --color-dark-secondary-500: #717171;
 }
 
 @custom-variant dark (&:is(.dark *));
