@@ -23,3 +23,8 @@ logs
 .env.*
 !.env.example
 .act.env
+
+public/clips
+public/videos
+
+sqlite.db

@@ -4,7 +4,7 @@ import { Pages } from "~/utils/constants/pages";
 </script>
 <template>
   <Element :link="Pages.Bot.link">
-    <template #default="{ iconClass }">
+    <template #default>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -15,7 +15,6 @@ import { Pages } from "~/utils/constants/pages";
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        :class="iconClass"
       >
         <path d="M12 8V4H8" />
         <rect width="16" height="12" x="4" y="8" rx="2" />

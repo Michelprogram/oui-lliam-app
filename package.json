@@ -4,6 +4,10 @@
   "private": true,
   "packageManager": "pnpm@8.7.6",
   "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -11,21 +15,31 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@huggingface/transformers": "^3.8.1",
+    "@pinia/nuxt": "^0.11.3",
     "@vueuse/core": "^14.0.0",
+    "better-sqlite3": "^12.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "drizzle-orm": "^0.45.0",
     "lucide-vue-next": "^0.554.0",
     "nuxt": "^4.2.1",
+    "pinia": "^3.0.4",
     "reka-ui": "^2.6.0",
     "shadcn-nuxt": "2.3.3",
     "tailwind-merge": "^3.4.0",
     "vue": "^3.5.25",
-    "vue-router": "^4.6.3"
+    "vue-router": "^4.6.3",
+    "wavefile": "^11.0.0",
+    "wavesurfer.js": "^7.12.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@nuxtjs/tailwindcss": "7.0.0-beta.1",
     "@tailwindcss/vite": "^4.1.17",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^24.10.1",
+    "drizzle-kit": "^0.31.8",
     "eslint": "^9.39.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-vue": "^10.6.1",

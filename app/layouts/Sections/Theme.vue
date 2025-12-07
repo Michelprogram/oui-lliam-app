@@ -21,9 +21,9 @@ const toggleTheme = () => {
 <template>
   <button
     @click="toggleTheme"
-    class="group cursor-pointer flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-midnight transition-colors"
+    class="hover:bg-secondary-100 group cursor-pointer flex items-center justify-center w-12 h-12 rounded-full transition-colors"
   >
-    <Moon v-if="!isDark" class="transition-colors group-hover:text-white" />
+    <Moon v-if="!isDark" class="transition-colors" />
     <Sun v-else class="transition-colors group-hover:text-white" />
   </button>
 </template>

@@ -1,9 +1,7 @@
 <script setup lang="ts">
-//import * as icons from "lucide-vue-next";
-import { computed } from "vue";
+import * as icons from "lucide-vue-next";
+import { type Component,computed } from "vue";
 import { useRoute } from "vue-router";
-
-import { cn } from "@/lib/utils";
 
 const props = withDefaults(
   defineProps<{
@@ -16,32 +14,26 @@ const props = withDefaults(
 const route = useRoute();
 const isActivePage = computed(() => route.path === props.link);
 
-/*
 const icon = computed(() => {
   if (props.name) {
-    return icons[props.name as keyof typeof icons];
+    return icons[props.name as keyof typeof icons] as Component;
   }
-  return "Video";
-  }); */
-
-const iconClass = computed(() =>
-  cn(
-    "transition-colors",
-    isActivePage.value ? "text-white" : "group-hover:text-white"
-  )
-);
+  return icons.Video;
+});
 </script>
 
 <template>
   <NuxtLink
     :to="link"
     :class="[
-      'group cursor-pointer flex items-center justify-center w-12 h-12 rounded-full transition-colors',
-      isActivePage ? 'bg-midnight' : 'bg-gray-100 hover:bg-midnight',
+      ' group cursor-pointer flex items-center justify-center w-12 h-12 rounded-full transition-colors',
+      isActivePage
+        ? 'bg-secondary-200 hover:bg-secondary-200'
+        : 'hover:bg-secondary-100',
     ]"
   >
     <!-- Custom SVG slot takes priority - classes are passed via scoped slot -->
-    <slot :iconClass="iconClass" v-if="name === undefined" />
-    <!--<component v-else :is="icon"/>-->
+    <slot v-if="name === undefined" />
+    <component v-else :is="icon" />
   </NuxtLink>
 </template>

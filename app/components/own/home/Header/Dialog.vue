@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Search } from "lucide-vue-next";
+import { History } from "lucide-vue-next";
 
 import {
     Command,
@@ -17,7 +17,10 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 <template>
     <Dialog>
         <DialogTrigger>
-            <Search :size="20" class="cursor-pointer" />
+            <Button size="sm" class="cursor-pointer" variant="outline">
+                History
+                <History />
+            </Button>
         </DialogTrigger>
         <DialogContent>
             <Command>

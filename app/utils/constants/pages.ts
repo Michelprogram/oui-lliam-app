@@ -19,5 +19,10 @@ export const Pages = {
     link: "/settings",
     icon: "Settings",
   },
+  Clipper: {
+    name: "Clipper",
+    link: "/clipper",
+    icon: "Clapperboard",
+  },
 };
 export type Pages = (typeof Pages)[keyof typeof Pages];

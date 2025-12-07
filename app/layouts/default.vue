@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-import { Bot, Rounds, Settings,Theme, Video } from "./Sections";
+import { Bot, Clipper, Rounds, Settings, Theme, Video } from "./Sections";
 </script>
 
 <template>
   <div class="grid grid-cols-[auto_1fr] h-screen overflow-hidden">
     <!-- Sidebar -->
-    <div class="bg-midnight-light">
-      <div class="grid grid-rows-[auto_1fr_auto] h-full">
+    <div class="bg-secondary">
+      <div class="grid grid-rows-[auto_1fr_1fr_auto] h-full">
         <div class="flex items-center gap-2 p-4">
-          <Avatar class="size-[48px]">
+          <Avatar class="size-12">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
@@ -22,6 +22,12 @@ import { Bot, Rounds, Settings,Theme, Video } from "./Sections";
           <Rounds />
           <Video />
         </div>
+
+        <DevOnly>
+          <div class="border-t border-border flex flex-col items-center gap-2">
+            <Clipper class="mt-2" />
+          </div>
+        </DevOnly>
 
         <!-- Sidebar footer -->
         <div class="flex flex-col gap-3 p-4">
