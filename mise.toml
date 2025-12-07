@@ -28,7 +28,3 @@ run = "act -W .github/workflows/validate.yml"
 [tasks.act_preview]
 description = "Run the github action preview locally"
 run = "act --secret-file .act.env -W .github/workflows/preview.yml"
-
-[tasks.act_clear_preview]
-description = "Run the github action clear_preview locally"
-run = ""

@@ -1,84 +1,86 @@
 <script setup lang="ts">
-import { onMounted,ref,useTemplateRef } from 'vue';
-import WaveSurfer from 'wavesurfer.js';
-import RegionsPlugin from 'wavesurfer.js/dist/plugins/regions.esm.js'
-import TimelinePlugin from 'wavesurfer.js/dist/plugins/timeline.esm.js'
+import { CircleX, Film, Folder } from "lucide-vue-next";
 
-import { Button } from "@/components/ui/button";
-import { Slider } from '@/components/ui/slider'
-import { isAbsent,type Maybe } from '@/utils/optional';
+import { useAsyncData } from "#app";
+import { Clipper, Tree } from "~/components/own/clipper";
+import { useClipperService } from "~/services/clipper";
 
-const videoElement = useTemplateRef<HTMLVideoElement>('videoElement');
-const containerElement = useTemplateRef<HTMLElement>('containerElement');
-const sliderElement = useTemplateRef<HTMLElement>('sliderElement');
-const wavesurfer = ref<Maybe<WaveSurfer>>(null);
-const region = ref<Maybe<RegionsPlugin>>(null);
+const {
+  selection,
+  videos,
+  audios,
+  fetchAudios,
+  fetchVideos,
+  deleteAudio,
+  deleteAudioDirectory,
+} = useClipperService();
 
-const updateZoom = (payload: Maybe<number[]>) => {
-
-  if (isAbsent(payload) || isAbsent(payload[0]) || isAbsent(wavesurfer.value)) return
-
-  wavesurfer.value.zoom(payload[0]);
-}
-
-onMounted(() => {
-  if (
-    isAbsent(videoElement.value) ||
-    isAbsent(containerElement.value)||
-    isAbsent(sliderElement.value)
-  ) return
-
-  region.value = RegionsPlugin.create()
-
-  wavesurfer.value = WaveSurfer.create({
-    container: containerElement.value,
-    waveColor: 'rgb(200, 0, 200)',
-    progressColor: 'rgb(100, 0, 100)',
-    media: videoElement.value,
-    barWidth: 10,
-    barGap: 1,
-    barRadius: 10,
-    minPxPerSec: 100,
-    plugins: [
-      TimelinePlugin.create(),
-      region.value!,
-     ]
-  })
-});
-
-const createRegion = () => {
-  if (isAbsent(region.value) || isAbsent(wavesurfer.value)) return
-
-  region.value.addRegion({
-    start: wavesurfer.value.getCurrentTime(),
-    end: wavesurfer.value.getCurrentTime()+2,
-    color: 'rgba(0, 255, 0, 0.3)',
-    drag: false,
-    resize: true,
-  });
-}
+useAsyncData("video", () => fetchVideos());
+useAsyncData("audios", () => fetchAudios());
 
 //Révision:
 // A partir du slide 7 à 39 pour le slide 3_d le truc avec le moteur de règle
-
 </script>
 <template>
-
-    <div ref="containerElement" >
-        <video
-            ref="videoElement"
-            src="/test.mp4"
-            controls
-            style="width: 600px; height: 400px;"
-        ></video>
-        <Slider
-            ref="sliderElement"
-           :default-value="[50]"
-           :max="100"
-           :step="1"
-           class="w-[60%]"
-           @update:model-value="updateZoom"
-         />
-         <Button @click="createRegion">Cut</Button>
-    </div>
+  <div class="h-screen grid grid-cols-6 grid-rows-6 gap-6 p-6">
+    <Tree
+      class="col-span-1 row-span-full col-start-0 min-h-0"
+      title="Episode"
+      description="List of downloaded video"
+      :parents="videos"
+      :has-delete="false"
+      :is-selected="(video) => video === selection"
+      @on-select="(video) => (selection = video)"
+    >
+      <template #header="{ parent }">
+        <span class="flex gap-2 items-center">
+          <Folder :size="20" />
+          /{{ parent }}
+        </span>
+      </template>
+      <template #icon>
+        <Film :size="15" class="shrink-0" />
+      </template>
+      <template #label="{ child }">
+        <span class="truncate cursor-pointer">
+          {{ child.name }}
+        </span>
+      </template>
+    </Tree>
+    <Clipper
+      class="col-span-4 row-span-6 size-full"
+      :active-selection="selection"
+    />
+    <Tree
+      class="col-span-1 row-span-full col-start-6 min-h-0"
+      title="Clips"
+      description="List of clips"
+      :parents="audios"
+      :has-delete="true"
+      :is-selected="(audio) => audio === selection"
+      @on-select="(audio) => (selection = audio)"
+      @on-delete="(audio) => deleteAudio(audio.id)"
+    >
+      <template #header="{ parent }">
+        <span class="flex gap-2 items-center">
+          <Folder :size="20" />
+          /{{ parent }}
+          <CircleX
+            :size="15"
+            color="red"
+            class="cursor-pointer"
+            @click="deleteAudioDirectory(parent)"
+          />
+        </span>
+      </template>
+      <template #icon>
+        <Film :size="15" class="shrink-0" />
+      </template>
+      <template #label="{ child }">
+        <span class="truncate cursor-pointer">
+          {{ child.filename }}
+        </span>
+      </template>
+    </Tree>
+  </div>
 </template>

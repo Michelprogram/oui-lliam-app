@@ -9,6 +9,7 @@ export default defineConfig([
   {
     ignores: [
       ".nuxt/**",
+      ".output/**",
       "app/components/ui/**",
       "node_modules/**",
       "eslint.config.ts",
@@ -23,17 +24,20 @@ export default defineConfig([
     rules: {
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
-      "prefer-const": ["error", {
-          "destructuring": "any",
-          "ignoreReadBeforeAssign": false
-      }],
+      "prefer-const": [
+        "error",
+        {
+          destructuring: "any",
+          ignoreReadBeforeAssign: false,
+        },
+      ],
     },
   },
   tseslint.configs.recommended,
   pluginVue.configs["flat/essential"],
   {
     rules: {
-      "vue/multi-word-component-names":"off"
+      "vue/multi-word-component-names": "off",
     },
     files: ["**/*.vue"],
     languageOptions: { parserOptions: { parser: tseslint.parser } },

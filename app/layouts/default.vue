@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-import { Bot, Clipper,Rounds, Settings,Theme, Video } from "./Sections";
+import { Bot, Clipper, Rounds, Settings, Theme, Video } from "./Sections";
 </script>
 
 <template>
@@ -23,9 +23,11 @@ import { Bot, Clipper,Rounds, Settings,Theme, Video } from "./Sections";
           <Video />
         </div>
 
-        <div class="border-t border-border flex flex-col items-center gap-2">
-            <Clipper class="mt-2"/>
-        </div>
+        <DevOnly>
+          <div class="border-t border-border flex flex-col items-center gap-2">
+            <Clipper class="mt-2" />
+          </div>
+        </DevOnly>
 
         <!-- Sidebar footer -->
         <div class="flex flex-col gap-3 p-4">
