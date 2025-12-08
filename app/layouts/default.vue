@@ -1,19 +1,27 @@
 <script setup lang="ts">
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { useUserService } from "~/services/user";
 
+import Dialog from "./Loggin/Container.vue";
 import { Bot, Clipper, Rounds, Settings, Theme, Video } from "./Sections";
+
+const { isAuthenticated, userAvatar, userDecoration } = useUserService();
 </script>
 
 <template>
   <div class="grid grid-cols-[auto_1fr] h-screen overflow-hidden">
-    <!-- Sidebar -->
+    <Dialog v-if="!isAuthenticated" />
+
     <div class="bg-secondary">
       <div class="grid grid-rows-[auto_1fr_1fr_auto] h-full">
-        <div class="flex items-center gap-2 p-4">
-          <Avatar class="size-12">
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
+        <div class="flex items-center gap-2 p-4 relative">
+          <Avatar class="size-12 relative">
+            <AvatarImage :src="userAvatar" />
           </Avatar>
+          <img
+            :src="userDecoration"
+            class="absolute size-16 right-2 pointer-events-none z-10"
+          />
         </div>
 
         <!-- Sidebar content -->
@@ -37,7 +45,6 @@ import { Bot, Clipper, Rounds, Settings, Theme, Video } from "./Sections";
       </div>
     </div>
 
-    <!-- Main content area with grid (top and bottom) -->
     <main class="grid grid-rows-[auto_1fr] h-full overflow-hidden">
       <div class="overflow-y-auto">
         <slot />

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Video as VideoIcon } from "lucide-vue-next";
 
-import { type Maybe } from "@/utils/optional";
 import type { Selection } from "~/types/clipper";
+import { type Maybe } from "~~/shared/utils/optional";
 
 import Audio from "./Audio/Container.vue";
 import Video from "./Video/Container.vue";

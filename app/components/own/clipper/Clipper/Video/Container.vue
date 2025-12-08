@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
-import { isAbsent } from "@/utils/optional";
 import type { Video } from "~/types/clipper";
+import { isAbsent } from "~~/shared/utils/optional";
 
 import Dialog from "./Dialog.vue";
 import { useForm } from "./useForm";
@@ -21,8 +21,6 @@ const {
   directories,
   activeRegion,
 } = useForm();
-
-
 </script>
 <template>
   <div class="h-full grid grid-cols-2 grid-rows-[1fr_0.2fr]">
