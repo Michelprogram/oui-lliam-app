@@ -1,5 +1,5 @@
-import type { Maybe } from "@/utils/optional";
-import type { Audio, AudioRequest, Selection,Video } from "~/types/clipper";
+import type { Audio, AudioRequest, Selection, Video } from "~/types/clipper";
+import type { Maybe } from "~~/shared/utils/optional";
 
 type ClipperStore = {
   kind: "success" | "loading" | "idle";

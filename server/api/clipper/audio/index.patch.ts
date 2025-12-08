@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 import { eq } from "drizzle-orm";
 import { promises as fs } from "fs";
-import { basename, dirname, extname,join } from "path";
+import { basename, dirname, extname, join } from "path";
 
 import { db } from "../../../db";
 import { clips } from "../../../db/clipper/schema";
