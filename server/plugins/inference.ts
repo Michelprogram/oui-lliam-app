@@ -9,7 +9,7 @@ export default defineNitroPlugin(() => {
   const url = config.inferenceApiUrl;
   const token = config.inferenceAuthToken;
 
-  console.log(url, token);
+  console.log("URL#", url, "TOKEN#", token);
 
   if (isAbsent(url)) {
     console.warn(
