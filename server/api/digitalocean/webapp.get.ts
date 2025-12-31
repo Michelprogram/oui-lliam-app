@@ -1,4 +1,5 @@
 import type { WebAppHealthData } from "#shared/server/digitalocean";
+import { isAbsent } from "#shared/utils/optional";
 import { apiSuccess, useDefineHandler } from "~~/server/utils/handler";
 
 export default useDefineHandler<WebAppHealthData>(async () => {
@@ -28,6 +29,6 @@ export default useDefineHandler<WebAppHealthData>(async () => {
     name: first.name,
     cpuUsagePercent: first.cpu_usage_percent.toFixed(2),
     memoryUsagePercent: first.memory_usage_percent.toFixed(2),
-    state: first.state,
+    state: first.state as "UNKNOWN" | "HEALTHY" | "UNHEALTHY",
   });
 });

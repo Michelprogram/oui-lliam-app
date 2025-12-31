@@ -17,7 +17,10 @@ const route = useRoute();
 const isActivePage = computed(() => route.path === props.link);
 
 const icon = computed(() => {
-  return isPresent(props.name) ? (icons[props.name] as Component) : icons.Video;
+  if (!isPresent(props.name)) {
+    return icons.Video;
+  }
+  return (icons[props.name as keyof typeof icons] as Component) ?? icons.Video;
 });
 </script>
 

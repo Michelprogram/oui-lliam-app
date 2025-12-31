@@ -18,7 +18,7 @@ export default useDefineHandler<DatabaseInfoData>(async () => {
 
   if (match) {
     const value = Number(match[1]);
-    const unit = match[2].toUpperCase();
+    const unit = match[2]!.toUpperCase();
 
     const multipliers: Record<string, number> = {
       B: 1,

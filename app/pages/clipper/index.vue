@@ -83,7 +83,7 @@ useAsyncData("audios", () => fetchAudios());
         </span>
       </template>
       <template #tooltip="{ child }">
-        {{ child.name }}
+        {{ child.filename }}
       </template>
     </Tree>
   </div>

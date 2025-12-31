@@ -14,6 +14,8 @@ export default defineNuxtConfig({
     digitalOceanSpaceAccessKey: process.env.DIGITAL_OCEAN_SPACE_ACCESS_KEY,
     digitalOceanSpaceSecretKey: process.env.DIGITAL_OCEAN_SPACE_SECRET_KEY,
     digitalOceanSpaceName: process.env.DIGITAL_OCEAN_SPACE_NAME,
+    inferenceAuthToken: process.env.INFERENCE_AUTH_TOKEN,
+    inferenceApiUrl: process.env.INFERENCE_API_URL,
   },
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt", "@pinia/nuxt"],

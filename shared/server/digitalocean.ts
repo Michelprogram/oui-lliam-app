@@ -18,5 +18,5 @@ export type SpaceInfoData = {
   totalBytes: number;
   totalMB: number;
   totalGB: number;
-  percentUsage: number;
+  percentUsage: string;
 };

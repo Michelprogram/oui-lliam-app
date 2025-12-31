@@ -1,4 +1,4 @@
-import { ListObjectsV2Command,S3Client } from "@aws-sdk/client-s3";
+import { ListObjectsV2Command, S3Client } from "@aws-sdk/client-s3";
 import { ofetch } from "ofetch";
 
 export const useDigitalOcean = () => {
@@ -23,7 +23,7 @@ export const useDigitalOcean = () => {
       conf.digitalOceanWebAppId +
       "/health";
 
-    return await ofetch<{ app_health: Webapp }>(URL, {
+    return await ofetch<{ app_health: AppHealth }>(URL, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -87,10 +87,6 @@ export const useDigitalOcean = () => {
     restartWebApp,
   };
 };
-
-export interface Webapp {
-  app_health: AppHealth;
-}
 
 export interface AppHealth {
   components: Component[];
