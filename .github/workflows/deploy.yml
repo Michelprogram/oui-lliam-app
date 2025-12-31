@@ -41,6 +41,15 @@ jobs:
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
           DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
           GHCR_CREDENTIALS: ${{ secrets.GHCR_CREDENTIALS }}
+          INFERENCE_AUTH_TOKEN: ${{ secrets.INFERENCE_AUTH_TOKEN }}
+          INFERENCE_API_URL: ${{ secrets.INFERENCE_API_URL }}
+          DIGITAL_OCEAN_TOKEN: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
+          DIGITAL_OCEAN_DATABASE_ID: ${{ secrets.DIGITAL_OCEAN_DATABASE_ID }}
+          DIGITAL_OCEAN_WEB_APP_ID: ${{ secrets.DIGITAL_OCEAN_WEB_APP_ID }}
+          DIGITAL_OCEAN_SPACE_REGION: ${{ secrets.DIGITAL_OCEAN_SPACE_REGION }}
+          DIGITAL_OCEAN_SPACE_ACCESS_KEY: ${{ secrets.DIGITAL_OCEAN_SPACE_ACCESS_KEY }}
+          DIGITAL_OCEAN_SPACE_SECRET_KEY: ${{ secrets.DIGITAL_OCEAN_SPACE_SECRET_KEY }}
+          DIGITAL_OCEAN_SPACE_NAME: ${{ secrets.DIGITAL_OCEAN_SPACE_NAME }}
         with:
           app_spec_location: digitalocean/deploy.yml
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
