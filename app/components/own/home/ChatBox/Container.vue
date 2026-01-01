@@ -4,8 +4,8 @@ import { onMounted } from "vue";
 import { useAudioQueue } from "@/composables/useAudioQueue";
 import { useFetch } from "#app";
 import { useQueueStore } from "#imports";
+import { useSSE } from "~/composables/useSSE";
 import { useUserService } from "~/services/user";
-import { useInferenceSubscriber } from "~/sse/subscribers/inference";
 import type { ProcessingRiotEventJob } from "~~/shared/sse/inference/type";
 
 const { data: jobs } = useFetch("/api/inference/completed");
@@ -35,13 +35,31 @@ const handleEventUpdate = (data: ProcessingRiotEventJob) => {
   if (data.status === "completed") {
     queueStore.addMessage(data);
     addToQueue(data);
+    scrollToBottom();
   }
 };
 
-onMounted(() => {
-  useInferenceSubscriber({
-    onUpdated: handleEventUpdate,
+const scrollToBottom = () => {
+  requestAnimationFrame(() => {
+    const viewport = document.querySelector(
+      '[data-slot="scroll-area-viewport"]'
+    ) as HTMLElement;
+
+    if (viewport) {
+      viewport.scrollTo({
+        top: viewport.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   });
+};
+
+const state = useSSE({
+  onMessage: (data) => handleEventUpdate(data),
+});
+
+onMounted(() => {
+  state.startListening();
 });
 </script>
 <template>

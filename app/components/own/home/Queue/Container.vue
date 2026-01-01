@@ -13,10 +13,10 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useMessagesStore } from "@/stores/message";
 import { useFetch } from "#app";
-import { Label } from "~/components/ui/label";
-import { Switch } from "~/components/ui/switch";
-import { useInferenceSubscriber } from "~/sse/subscribers/inference";
+import { useSSE } from "~/composables/useSSE";
 import type { ProcessingRiotEventJob } from "~~/shared/sse/inference/type";
+
+import Menu from "./Menu.vue";
 
 const { data: events } = useFetch("/api/inference/list");
 
@@ -79,24 +79,25 @@ const scrollToBottom = () => {
   });
 };
 
+const state = useSSE({
+  onMessage: (data) => handleEventUpdate(data),
+});
+
 onMounted(() => {
-  useInferenceSubscriber({
-    onUpdated: handleEventUpdate,
-  });
+  state.startListening();
 });
 </script>
 
 <template>
   <Card class="h-full min-h-0 flex flex-col">
     <CardHeader>
-      <CardTitle>
-        Queue <span class="text-sm">({{ store.messages.value.length }})</span>
+      <CardTitle class="flex justify-between items-center">
+        <p>
+          Queue <span class="text-sm">({{ store.messages.value.length }})</span>
+        </p>
+        <Menu v-model:auto-scroll="autoScroll" />
       </CardTitle>
       <CardDescription>Processing events</CardDescription>
-      <div class="flex items-center space-x-2">
-        <Switch id="airplane-mode" v-model:model-value="autoScroll" />
-        <Label for="airplane-mode">Auto scroll</Label>
-      </div>
     </CardHeader>
     <CardContent class="flex-1 min-h-0">
       <ScrollArea ref="scrollAreaRef" class="h-full min-h-0 w-64">

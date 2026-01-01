@@ -44,6 +44,11 @@ export const useMessagesStore = defineStore("messages", () => {
     return messagesState.value.filter((m) => m.status === "completed");
   });
 
+  const clear = () => {
+    messagesIds.value = new Set();
+    messagesState.value = [];
+  };
+
   return {
     messages,
     isLoading,
@@ -52,6 +57,7 @@ export const useMessagesStore = defineStore("messages", () => {
     updateMessage,
     getCompletedMessages,
     alreadyExist,
+    clear,
     removeMessage,
   };
 });

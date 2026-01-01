@@ -95,6 +95,18 @@ export const useInferenceApi = () => {
     return response;
   };
 
+  const resetEvents = async () => {
+    const response = await ofetch<{
+      status: "success";
+    }>(`${conf.inferenceApiUrl}/events/clear`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${conf.inferenceAuthToken}`,
+      },
+    });
+    return response;
+  };
+
   return {
     getLLMAvailableModels,
     getTTSAvailableModels,
@@ -103,5 +115,6 @@ export const useInferenceApi = () => {
     setCurrentLLM,
     setCurrentTTS,
     listEvents,
+    resetEvents,
   };
 };
