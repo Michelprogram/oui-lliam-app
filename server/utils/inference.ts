@@ -21,7 +21,7 @@ export const useInferenceApi = () => {
 
   const getLLMAvailableModels = async () => {
     const ip = await url();
-    const response = await ofetch<{ llm: string[] }>(`${ip}/llm/list`, {
+    const response = await ofetch<{ llm: string[] }>(`http://${ip}/llm/list`, {
       headers: {
         Authorization: `Bearer ${conf.inferenceAuthToken}`,
       },
@@ -32,7 +32,7 @@ export const useInferenceApi = () => {
   const getTTSAvailableModels = async () => {
     const ip = await url();
 
-    const response = await ofetch<{ tts: string[] }>(`${ip}/tts/list`, {
+    const response = await ofetch<{ tts: string[] }>(`http://${ip}/tts/list`, {
       headers: {
         Authorization: `Bearer ${conf.inferenceAuthToken}`,
       },
@@ -43,7 +43,7 @@ export const useInferenceApi = () => {
   const getCurrentLLM = async () => {
     const ip = await url();
 
-    const response = await ofetch<{ current_llm: string }>(`${ip}/llm`, {
+    const response = await ofetch<{ current_llm: string }>(`http://${ip}/llm`, {
       headers: {
         Authorization: `Bearer ${conf.inferenceAuthToken}`,
       },
@@ -54,7 +54,7 @@ export const useInferenceApi = () => {
   const getCurrentTTS = async () => {
     const ip = await url();
 
-    const response = await ofetch<{ current_tts: string }>(`${ip}/tts`, {
+    const response = await ofetch<{ current_tts: string }>(`http://${ip}/tts`, {
       headers: {
         Authorization: `Bearer ${conf.inferenceAuthToken}`,
       },
@@ -69,7 +69,7 @@ export const useInferenceApi = () => {
       status: string;
       current_llm: string;
       is_loaded: boolean;
-    }>(`${ip}/llm`, {
+    }>(`http://${ip}/llm`, {
       method: "PUT",
       body: { name: model },
       headers: {
@@ -86,7 +86,7 @@ export const useInferenceApi = () => {
       status: string;
       current_tts: string;
       is_loaded: boolean;
-    }>(`${ip}/tts`, {
+    }>(`http://${ip}/tts`, {
       method: "PUT",
       body: { name: model },
       headers: {
@@ -101,7 +101,7 @@ export const useInferenceApi = () => {
 
     const response = await ofetch<{
       events: ProcessingRiotEventJob[];
-    }>(`${ip}/events/list`, {
+    }>(`http://${ip}/events/list`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${conf.inferenceAuthToken}`,
@@ -115,7 +115,7 @@ export const useInferenceApi = () => {
 
     const response = await ofetch<{
       status: "success";
-    }>(`${ip}/events/clear`, {
+    }>(`http://${ip}/events/clear`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${conf.inferenceAuthToken}`,
