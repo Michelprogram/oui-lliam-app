@@ -138,7 +138,7 @@ export const getSSEManager = async () => {
   if (res.ip === "" && res.status !== GPUStatus.RUNNING) {
     throw new Error("SSE not running");
   } else if (!sseManager) {
-    const URL = `http://${res.ip}/events/sse/status?token=${inferenceAuthToken}`;
+    const URL = `http://${res.ip}:8000/events/sse/status?token=${inferenceAuthToken}`;
     sseManager = new SSEManager(URL);
   }
   return sseManager;
