@@ -15,7 +15,7 @@ export const useAudioQueue = () => {
   };
 
   const processQueue = async () => {
-    if (audioQueue.value.length === 0) return;
+    if (audioQueue.value.length === 0 || isPlaying.value) return;
 
     const nextMessage = audioQueue.value.shift();
     currentMessage.value = nextMessage;

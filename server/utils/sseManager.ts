@@ -149,10 +149,6 @@ export const getSSEManager = async () => {
     throw new Error("SSE not available: Invalid or missing IP address");
   }
 
-  if (!res || !res.ip || res.ip.trim() === "") {
-    throw new Error("SSE not available: Invalid or missing IP address");
-  }
-
   const URL = `http://${res.ip}:8000/events/sse/status?token=${inferenceAuthToken}`;
   console.log(URL);
   sseManager = new SSEManager(URL);
