@@ -21,8 +21,6 @@ export const useSSE = (callbacks: {
       if (status.value.data.status !== GPUStatus.RUNNING) {
         throw new Error("SSE not available");
       }
-    } else {
-      throw new Error("SSE not available");
     }
 
     if (eventSource) return;

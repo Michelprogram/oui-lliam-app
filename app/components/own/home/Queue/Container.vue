@@ -23,7 +23,7 @@ const { data: events } = useFetch("/api/inference/list");
 const autoScroll = ref(true);
 const store = useMessagesStore();
 
-const status = ref(true);
+const status = ref(false);
 
 if (events.value?.type === "success") {
   events.value.data.events.forEach((evt) => store.addMessage(evt));
@@ -155,7 +155,7 @@ onMounted(async () => {
           </div>
         </div>
       </ScrollArea>
-      <div>
+      <div v-else>
         <p>SSE not Available</p>
       </div>
     </CardContent>
